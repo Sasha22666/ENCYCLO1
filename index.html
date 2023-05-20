@@ -69,7 +69,7 @@ function showArticles(listArticles) {
                firstL = elementStr[0];
           
               pageHTML += "<h2>" + firstL + "</h2>";}
-              pageHTML += '<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>';                          
+              pageHTML += '<a href="#Article_'+i+'" onclick="switchToPage('+i+')">'+listArticles[i]+'</a><br>';                          
                 
             }
   
@@ -95,7 +95,7 @@ function addList(listArticles) {
        for (var i=0; i<listArticles.length; i++) {
      
     //  for(var j=0; j<listArticles[i]["value"].length; j++) {
-       pageHTML+='<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>'
+       pageHTML+='<a href="#Article_'+i+'" onclick="switchToPage('+i+')">'+listArticles[i]+'</a><br>'
      
        
      document.body.innerHTML=pageHTML;
