@@ -58,19 +58,19 @@ function switchToStateFromURLHash() {
 { type:'GET', dataType:'json', success:function(data) {  listArticles=data;  showArticles(listArticles)}, error:errorHandler });
    
 function showArticles(listArticles) {
-            let firstL;
+           
             let listArticlesNew=[];
             listArticlesNew=listArticles.sort();
            
 
             for (let i = 0; i < listArticlesNew.length; i++) {
-              let element=listArticles[i];
-              let elementStr = element.toString();
+              
+              let elementStr = listArticlesNew[i].toString();
               if (elementStr[0] != firstL) {
-               firstL = elementStr[0];
+              let firstL = elementStr[0];
           
               pageHTML += "<h2>" + firstL + "</h2>";}
-              pageHTML += '<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticlesNew[i]+'</a><br>';                          
+              pageHTML += '<a href="#Article_'+listArticles.indexOf(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticlesNew[i]+'</a><br>';                          
                 
             }
   
