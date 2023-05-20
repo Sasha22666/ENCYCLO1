@@ -58,7 +58,7 @@ function switchToStateFromURLHash() {
 { type:'GET', dataType:'json', success:function(data) {  listArticles=data;  showArticles(listArticles)}, error:errorHandler });
    
 function showArticles(listArticles) {
-            var clone = listArticles.slice(0);
+            var clone = listArticles.slice();
     
             let firstL;
            
