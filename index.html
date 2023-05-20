@@ -70,7 +70,7 @@ function showArticles(listArticles) {
               firstL = elementStr[0];
           
               pageHTML += "<h2>" + firstL + "</h2>";}
-              pageHTML += '<a href="#Article_'+listArticles.indexOf(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticlesNew[i]+'</a><br>';                          
+              pageHTML += '<a href="#Article_'+listArticles.indexOf(listArticlesNew[i+1])+'" onclick="switchToPage('+(i+1)+')">'+listArticlesNew[i]+'</a><br>';                          
                 
             }
   
