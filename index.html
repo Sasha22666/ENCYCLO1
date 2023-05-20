@@ -95,11 +95,12 @@ function showArticles(listArticles) {
      $.ajax("https://sasha22666.github.io/ENCYCLO1/articles3.json",
 { type:'GET', dataType:'json', success:function(data) {  listArticles=data; addList(listArticles)}, error:errorHandler });
 function addList(listArticles) {
+    var clone = listArticles.slice();
     listArticles.sort();
        for (var i=0; i<listArticles.length; i++) {
      
     //  for(var j=0; j<listArticles[i]["value"].length; j++) {
-       pageHTML+='<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>'
+       pageHTML+='<a href="#Article_'+clone.indexOf([i+1])+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>'
      
        
      document.body.innerHTML=pageHTML;
