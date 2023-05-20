@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Энциклопедия</title>
+</head>
+
+<body>
+  <script src='https://fe.it-academy.by/JQ/jquery.js'></script>
+    <style>
+      /* #Page1 {text-decoration:underline;
+      cursor: pointer;
+    display: block};
+
+      #Zagolovok {
+        text-align: center;
+      } */
+
+     
+    </style>
+    
+<!-- <h2>ОДНОСТРАНИЧНОЕ ПРИЛОЖЕНИЕ</h2> -->
+
+<div id='IPage'>
+</div>
+
+
+<script>'use strict'
+
+   function errorHandler(jqXHR,statusStr,errorStr) {
+  alert(statusStr+' '+errorStr);
+}
+window.onhashchange=switchToStateFromURLHash;
+var SPAState={};
+function switchToStateFromURLHash() {
+   var URLHash=window.location.hash;
+  var stateStr=URLHash.substr(1);
+  if ( stateStr!="" ) {
+    var parts=stateStr.split("_")
+      SPAState={ pagename: parts[0] };
+      if ( SPAState.pagename=='Article' )
+        SPAState.num=parts[1];
+  } 
+   else
+      SPAState={pagename:'Main'};
+  var pageHTML='';
+  switch (SPAState.pagename){
+    case 'Main':
+      pageHTML+='<h2>Энциклопедия </h2>';
+      pageHTML+='<a href="#List" onclick="switchToListPage()">список статей</a>'
+     
+      break;
+      case 'List':
+      pageHTML+='<h2>Оглавление</h2>';
+      var listArticles=[];
+     $.ajax("https://sasha22666.github.io/ENCYCLO1/articles3.json",
+{ type:'GET', dataType:'json', success:function(data) {  listArticles=data; addArticles(listArticles)}, error:errorHandler });
+   
+function showArticles(listArticles) {
+            let firstL;
+          
+            listArticles.sort();
+
+            for (let i = 0; i < listArticles.length; i++) {
+              let element=listArticles[i];
+              let elementStr = element.toString();
+              if (elementStr[0] != firstL) {
+               firstL = elementStr[0];
+          
+              pageHTML += "<h2>" + firstL + "</h2>";}
+              pageHTML += '<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>';                          
+                
+            }
+  
+//   function addArticles(listArticles) {
+//     for (var i=0; i<listArticles.length; i++) {
+//      pageHTML+='<h3>'+listArticles[i]["name"]+'</h3>';
+//      for(var j=0; j<listArticles[i]["value"].length; j++) {
+//        pageHTML+='<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]["value"][j]+'</a><br>'
+//      }
+     
+//      document.body.innerHTML=pageHTML;
+//     }
+  }
+ 
+          
+      break;
+      case 'Article':
+      var listArticles=[];
+     $.ajax("https://sasha22666.github.io/ENCYCLO1/articles3.json",
+{ type:'GET', dataType:'json', success:function(data) {  listArticles=data; addList(listArticles)}, error:errorHandler });
+function addList(listArticles) {
+    listArticles.sort();
+       for (var i=0; i<listArticles.length; i++) {
+     
+    //  for(var j=0; j<listArticles[i]["value"].length; j++) {
+       pageHTML+='<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>'
+     
+       
+     document.body.innerHTML=pageHTML;
+       }
+}
+      var articleLink=stateStr+".html"
+       $.ajax(articleLink,
+            { type:'GET', dataType:'html', success:dataLoaded, error:errorHandler }
+        );
+         function dataLoaded(data) {
+          var divTag=document.createElement('div');
+           
+           divTag.style.position='absolute';
+           divTag.style.left='105px'
+           divTag.style.top='0px';
+          document.body.appendChild(divTag)
+          
+         divTag.innerHTML=data;
+         
+    }
+
+   
+      break;
+      
+  }
+  document.body.innerHTML=pageHTML;
+}
+function switchToState(newState) {
+  var stateStr=newState.pagename;
+  if ( newState.pagename=='Article' )
+      stateStr+="_"+newState.num;
+  location.hash=stateStr;
+}
+function switchToMainPage() {
+  switchToState({pagename:'Main'});
+}
+
+function switchToListPage() {
+ switchToState({pagename:'List'});
+}
+ function switchToPage(numArticle) {
+   switchToState( { pagename:'Article', num: numArticle} );
+  }
+switchToStateFromURLHash();
+
+</script>
+
+</body>
+
+</html>
