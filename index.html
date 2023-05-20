@@ -98,6 +98,8 @@ function addList(listArticles) {
     var clone = listArticles.slice();
     listArticles.sort();
        for (var i=0; i<listArticles.length; i++) {
+        
+       let elementStr = listArticles[i].toString();
      
     //  for(var j=0; j<listArticles[i]["value"].length; j++) {
        pageHTML+='<a href="#Article_'+(clone.indexOf(elementStr)+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>'
