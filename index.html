@@ -55,7 +55,7 @@ function switchToStateFromURLHash() {
       pageHTML+='<h2>Оглавление</h2>';
       var listArticles=[];
      $.ajax("https://sasha22666.github.io/ENCYCLO1/articles3.json",
-{ type:'GET', dataType:'json', success:function(data) {  listArticles=data; addArticles(listArticles)}, error:errorHandler });
+{ type:'GET', dataType:'json', success:function(data) {  listArticles=data;  showArticles(listArticles)}, error:errorHandler });
    
 function showArticles(listArticles) {
             let firstL;
