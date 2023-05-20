@@ -8,23 +8,9 @@
 
 <body>
   <script src='https://fe.it-academy.by/JQ/jquery.js'></script>
-    <style>
-      /* #Page1 {text-decoration:underline;
-      cursor: pointer;
-    display: block};
-
-      #Zagolovok {
-        text-align: center;
-      } */
-
-     
-    </style>
-    
-<!-- <h2>ОДНОСТРАНИЧНОЕ ПРИЛОЖЕНИЕ</h2> -->
-
+ 
 <div id='IPage'>
 </div>
-
 
 <script>'use strict'
 
@@ -61,9 +47,9 @@ function showArticles(listArticles) {
             var clone = listArticles.slice();
     
             let firstL;
-           
+   
             listArticles.sort();
-           
+        
 
             for (let i = 0; i < listArticles.length; i++) {
           
@@ -73,22 +59,14 @@ function showArticles(listArticles) {
           
               pageHTML += "<h2>" + firstL + "</h2>";}
               pageHTML += '<a href="#Article_'+(clone.indexOf(elementStr)+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>';                          
-                
+               
             }
-  
-//   function addArticles(listArticles) {
-//     for (var i=0; i<listArticles.length; i++) {
-//      pageHTML+='<h3>'+listArticles[i]["name"]+'</h3>';
-//      for(var j=0; j<listArticles[i]["value"].length; j++) {
-//        pageHTML+='<a href="#Article_'+(i+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]["value"][j]+'</a><br>'
-//      }
-     
-//      document.body.innerHTML=pageHTML;
-//     }
+ 
+
      document.body.innerHTML=pageHTML;
   }
  
-          
+         
       break;
       case 'Article':
       var listArticles=[];
@@ -100,12 +78,10 @@ function addList(listArticles) {
        for (var i=0; i<listArticles.length; i++) {
         
        let elementStr = listArticles[i].toString();
-     
-    //  for(var j=0; j<listArticles[i]["value"].length; j++) {
+    
        pageHTML+='<a href="#Article_'+(clone.indexOf(elementStr)+1)+'" onclick="switchToPage('+(i+1)+')">'+listArticles[i]+'</a><br>'
-     
-       
-     document.body.innerHTML=pageHTML;
+    
+      document.body.innerHTML=pageHTML;
        }
 }
       var articleLink=stateStr+".html"
@@ -119,14 +95,13 @@ function addList(listArticles) {
            divTag.style.left='105px'
            divTag.style.top='0px';
           document.body.appendChild(divTag)
-          
-         divTag.innerHTML=data;
          
+         divTag.innerHTML=data;
+        
     }
-
    
       break;
-      
+    
   }
   document.body.innerHTML=pageHTML;
 }
